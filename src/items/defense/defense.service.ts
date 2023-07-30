@@ -1,15 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { CreateDefenseDto } from './dto/create-defense.dto';
 import { UpdateDefenseDto } from './dto/update-defense.dto';
+import { DefenseType } from './dto/DefenseType';
 
 @Injectable()
 export class DefenseService {
-  create(createDefenseDto: CreateDefenseDto) {
-    return 'This action adds a new defense';
+  create(createDefenseDto: CreateDefenseDto, defenseItemType: DefenseType) {
+    return `This action adds a new ${defenseItemType}`;
   }
 
-  findAll() {
-    return `This action returns all defense`;
+  findAll(defenseItemType: DefenseType) {
+    return `This action returns all ${defenseItemType}s`;
   }
 
   findOne(id: number) {

@@ -4,7 +4,7 @@ import { CreateAttackDto } from './dto/create-attack.dto';
 import { UpdateAttackDto } from './dto/update-attack.dto';
 import { AttackType } from './dto/AttackType.';
 
-@Controller('items/:attackItemType')
+@Controller('item/attack/:attackItemType')
 export class AttackController {
   constructor(private readonly attackService: AttackService) {}
 

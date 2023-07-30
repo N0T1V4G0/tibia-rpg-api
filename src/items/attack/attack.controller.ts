@@ -1,20 +1,24 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseEnumPipe } from '@nestjs/common';
 import { AttackService } from './attack.service';
 import { CreateAttackDto } from './dto/create-attack.dto';
 import { UpdateAttackDto } from './dto/update-attack.dto';
+import { AttackType } from './dto/AttackType.';
 
-@Controller('attack')
+@Controller('items/:attackItemType')
 export class AttackController {
   constructor(private readonly attackService: AttackService) {}
 
   @Post()
-  create(@Body() createAttackDto: CreateAttackDto) {
-    return this.attackService.create(createAttackDto);
+  create(
+    @Body() createAttackDto: CreateAttackDto,
+    @Param('attackItemType', new ParseEnumPipe(AttackType)) attackItemType: AttackType,
+  ) {
+    return this.attackService.create(createAttackDto, attackItemType);
   }
 
   @Get()
-  findAll() {
-    return this.attackService.findAll();
+  findAll(@Param('attackItemType', new ParseEnumPipe(AttackType)) attackItemType: AttackType) {
+    return this.attackService.findAll(attackItemType);
   }
 
   @Get(':id')

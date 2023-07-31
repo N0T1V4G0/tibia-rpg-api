@@ -6,3 +6,13 @@ export enum AttackType {
     WAND = "wand",
     ROD = "rod",
 }
+
+export enum PropertyType {
+  FIRE = "fire",
+  EARTH = "earth",
+  ICE = "ice",
+  ENERGY = "energy",
+  DEATH = "death",
+  HOLY = "holy",
+  PHYSICAL = "physical",
+}

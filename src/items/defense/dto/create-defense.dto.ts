@@ -1,4 +1,4 @@
-import { IsEnum, IsOptional, IsPositive, IsString, IsUrl } from "class-validator"
+import { IsEnum, IsInt, IsOptional, IsPositive, IsString, IsUrl } from "class-validator"
 import { DefenseType } from "./DefenseType"
 
 export class CreateDefenseDto {
@@ -7,14 +7,15 @@ export class CreateDefenseDto {
 
   @IsUrl()
   @IsOptional()
-  img: string
+  img?: string
 
   @IsPositive()
+  @IsInt()
   def: number
 
   @IsString()
   @IsOptional()
-  effect: string
+  effect?: string
 
   @IsEnum(DefenseType)
   type: DefenseType

@@ -2,9 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { CreateAttackDto } from './dto/create-attack.dto';
 import { UpdateAttackDto } from './dto/update-attack.dto';
 import { AttackType } from './dto/AttackType.';
+import { AttackRepository } from './attack.repository';
 
 @Injectable()
 export class AttackService {
+  constructor(private readonly attackRepo: AttackRepository) {}
+
   create(createAttackDto: CreateAttackDto, attackItemType: AttackType) {
     return `This action adds a new ${attackItemType}`;
   }

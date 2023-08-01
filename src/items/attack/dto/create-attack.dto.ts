@@ -1,26 +1,35 @@
-import { IsEnum, IsInt, IsOptional, IsPositive, IsString, IsUrl, Max, Min } from "class-validator"
-import { PropertyType } from "./AttackType."
+import {
+  IsEnum,
+  IsInt,
+  IsOptional,
+  IsPositive,
+  IsString,
+  IsUrl,
+  Max,
+  Min,
+} from 'class-validator';
+import { PropertyType } from './AttackType.';
 
 export class CreateAttackDto {
   @IsString()
-  name: string
+  name: string;
 
   @IsUrl()
   @IsOptional()
-  img?: string
+  img?: string;
 
   @IsPositive()
   @IsInt()
-  atk: number
+  atk: number;
 
   @IsString()
   @IsOptional()
-  effect?: string
+  effect?: string;
 
   @IsEnum(PropertyType)
   property: PropertyType;
 
-  @IsInt({message: 'wield must be 1 or 2'})
+  @IsInt({ message: 'wield must be 1 or 2' })
   @Min(1)
   @Max(2)
   wield: number;

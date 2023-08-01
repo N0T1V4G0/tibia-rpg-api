@@ -1,19 +1,24 @@
-import { IsEnum, IsInt, IsOptional, IsPositive, IsString, IsUrl } from "class-validator"
-import { DefenseType } from "./DefenseType"
+import {
+  IsInt,
+  IsOptional,
+  IsPositive,
+  IsString,
+  IsUrl,
+} from 'class-validator';
 
 export class CreateDefenseDto {
   @IsString()
-  name: string
+  name: string;
 
   @IsUrl()
   @IsOptional()
-  img?: string
+  img?: string;
 
   @IsPositive()
   @IsInt()
-  def: number
+  def: number;
 
   @IsString()
   @IsOptional()
-  effect?: string
+  effect?: string;
 }

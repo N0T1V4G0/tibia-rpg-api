@@ -1,31 +1,40 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateAttackDto } from './create-attack.dto';
-import { IsEnum, IsInt, IsNumber, IsOptional, IsPositive, IsString, IsUrl, Max, Min } from 'class-validator';
+import {
+  IsEnum,
+  IsInt,
+  IsOptional,
+  IsPositive,
+  IsString,
+  IsUrl,
+  Max,
+  Min,
+} from 'class-validator';
 import { PropertyType } from './AttackType.';
 
 export class UpdateAttackDto extends PartialType(CreateAttackDto) {
   @IsString()
   @IsOptional()
-  name?: string
+  name?: string;
 
   @IsUrl()
   @IsOptional()
-  img?: string
+  img?: string;
 
   @IsPositive()
   @IsInt()
   @IsOptional()
-  atk?: number
+  atk?: number;
 
   @IsString()
   @IsOptional()
-  effect?: string
+  effect?: string;
 
   @IsEnum(PropertyType)
   @IsOptional()
   property?: PropertyType;
 
-  @IsInt({message: 'wield must be 1 or 2'})
+  @IsInt({ message: 'wield must be 1 or 2' })
   @Min(1)
   @Max(2)
   @IsOptional()

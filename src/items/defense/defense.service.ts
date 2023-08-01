@@ -2,9 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { CreateDefenseDto } from './dto/create-defense.dto';
 import { UpdateDefenseDto } from './dto/update-defense.dto';
 import { DefenseType } from './dto/DefenseType';
+import { DefenseRepository } from './defense.repository';
 
 @Injectable()
 export class DefenseService {
+  constructor(private readonly defenseRepo: DefenseRepository) {}
+
   create(createDefenseDto: CreateDefenseDto, defenseItemType: DefenseType) {
     return `This action adds a new ${defenseItemType}`;
   }

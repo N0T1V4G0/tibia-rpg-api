@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ParseEnumPipe } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  ParseEnumPipe,
+} from '@nestjs/common';
 import { AttackService } from './attack.service';
 import { CreateAttackDto } from './dto/create-attack.dto';
 import { UpdateAttackDto } from './dto/update-attack.dto';
@@ -11,7 +20,8 @@ export class AttackController {
   @Post(':attackItemType')
   create(
     @Body() createAttackDto: CreateAttackDto,
-    @Param('attackItemType', new ParseEnumPipe(AttackType)) attackItemType: AttackType,
+    @Param('attackItemType', new ParseEnumPipe(AttackType))
+    attackItemType: AttackType,
   ) {
     return this.attackService.create(createAttackDto, attackItemType);
   }
@@ -22,22 +32,28 @@ export class AttackController {
   }
 
   @Get(':attackItemType')
-  findAllByType(@Param('attackItemType', new ParseEnumPipe(AttackType)) attackItemType: AttackType) {
+  findAllByType(
+    @Param('attackItemType', new ParseEnumPipe(AttackType))
+    attackItemType: AttackType,
+  ) {
     return this.attackService.findAllByType(attackItemType);
   }
 
   @Get(':attackItemType/:id')
   findOne(
     @Param('id') id: string,
-    @Param('attackItemType', new ParseEnumPipe(AttackType)) attackItemType: AttackType,
+    @Param('attackItemType', new ParseEnumPipe(AttackType))
+    attackItemType: AttackType,
   ) {
     return this.attackService.findOne(+id);
   }
 
   @Patch(':attackItemType/:id')
   update(
-    @Param('id') id: string, @Body() updateAttackDto: UpdateAttackDto,
-    @Param('attackItemType', new ParseEnumPipe(AttackType)) attackItemType: AttackType,
+    @Param('id') id: string,
+    @Body() updateAttackDto: UpdateAttackDto,
+    @Param('attackItemType', new ParseEnumPipe(AttackType))
+    attackItemType: AttackType,
   ) {
     return this.attackService.update(+id, updateAttackDto);
   }
@@ -45,7 +61,8 @@ export class AttackController {
   @Delete(':attackItemType/:id')
   remove(
     @Param('id') id: string,
-    @Param('attackItemType', new ParseEnumPipe(AttackType)) attackItemType: AttackType,  
+    @Param('attackItemType', new ParseEnumPipe(AttackType))
+    attackItemType: AttackType,
   ) {
     return this.attackService.remove(+id);
   }

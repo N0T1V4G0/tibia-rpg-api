@@ -5,9 +5,9 @@ export class AppController {
   constructor() {}
 
   @Get()
-  getHello() {
+  ping() {
     return {
-      message: "it works!",
+      message: 'it works!',
     };
   }
 }

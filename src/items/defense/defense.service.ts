@@ -9,7 +9,11 @@ export class DefenseService {
     return `This action adds a new ${defenseItemType}`;
   }
 
-  findAll(defenseItemType: DefenseType) {
+  findAll() {
+    return `This action returns all defense items`;
+  }
+
+  findAllByType(defenseItemType: DefenseType) {
     return `This action returns all ${defenseItemType}s`;
   }
 

@@ -4,11 +4,11 @@ import { CreateDefenseDto } from './dto/create-defense.dto';
 import { UpdateDefenseDto } from './dto/update-defense.dto';
 import { DefenseType } from './dto/DefenseType';
 
-@Controller('item/defense/:defenseItemType')
+@Controller('item/defense')
 export class DefenseController {
   constructor(private readonly defenseService: DefenseService) {}
 
-  @Post()
+  @Post(':defenseItemType')
   create(
     @Body() createDefenseDto: CreateDefenseDto,
     @Param('defenseItemType', new ParseEnumPipe(DefenseType)) defenseItemType: DefenseType,
@@ -17,22 +17,37 @@ export class DefenseController {
   }
 
   @Get()
-  findAll(@Param('defenseItemType', new ParseEnumPipe(DefenseType)) defenseItemType: DefenseType) {
-    return this.defenseService.findAll(defenseItemType);
+  findAll() {
+    return this.defenseService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
+  @Get(':defenseItemType')
+  findAllByType(@Param('defenseItemType', new ParseEnumPipe(DefenseType)) defenseItemType: DefenseType) {
+    return this.defenseService.findAllByType(defenseItemType);
+  }
+
+  @Get(':defenseItemType/:id')
+  findOne(
+    @Param('id') id: string,
+    @Param('defenseItemType', new ParseEnumPipe(DefenseType)) defenseItemType: DefenseType,  
+  ) {
     return this.defenseService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDefenseDto: UpdateDefenseDto) {
+  @Patch(':defenseItemType/:id')
+  update(
+    @Param('id') id: string,
+    @Body() updateDefenseDto: UpdateDefenseDto,
+    @Param('defenseItemType', new ParseEnumPipe(DefenseType)) defenseItemType: DefenseType,
+  ) {
     return this.defenseService.update(+id, updateDefenseDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
+  @Delete(':defenseItemType/:id')
+  remove(
+    @Param('id') id: string,
+    @Param('defenseItemType', new ParseEnumPipe(DefenseType)) defenseItemType: DefenseType,  
+  ) {
     return this.defenseService.remove(+id);
   }
 }

@@ -4,11 +4,11 @@ import { CreateAttackDto } from './dto/create-attack.dto';
 import { UpdateAttackDto } from './dto/update-attack.dto';
 import { AttackType } from './dto/AttackType.';
 
-@Controller('item/attack/:attackItemType')
+@Controller('item/attack')
 export class AttackController {
   constructor(private readonly attackService: AttackService) {}
 
-  @Post()
+  @Post(':attackItemType')
   create(
     @Body() createAttackDto: CreateAttackDto,
     @Param('attackItemType', new ParseEnumPipe(AttackType)) attackItemType: AttackType,
@@ -17,22 +17,36 @@ export class AttackController {
   }
 
   @Get()
-  findAll(@Param('attackItemType', new ParseEnumPipe(AttackType)) attackItemType: AttackType) {
-    return this.attackService.findAll(attackItemType);
+  findAll() {
+    return this.attackService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
+  @Get(':attackItemType')
+  findAllByType(@Param('attackItemType', new ParseEnumPipe(AttackType)) attackItemType: AttackType) {
+    return this.attackService.findAllByType(attackItemType);
+  }
+
+  @Get(':attackItemType/:id')
+  findOne(
+    @Param('id') id: string,
+    @Param('attackItemType', new ParseEnumPipe(AttackType)) attackItemType: AttackType,
+  ) {
     return this.attackService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAttackDto: UpdateAttackDto) {
+  @Patch(':attackItemType/:id')
+  update(
+    @Param('id') id: string, @Body() updateAttackDto: UpdateAttackDto,
+    @Param('attackItemType', new ParseEnumPipe(AttackType)) attackItemType: AttackType,
+  ) {
     return this.attackService.update(+id, updateAttackDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
+  @Delete(':attackItemType/:id')
+  remove(
+    @Param('id') id: string,
+    @Param('attackItemType', new ParseEnumPipe(AttackType)) attackItemType: AttackType,  
+  ) {
     return this.attackService.remove(+id);
   }
 }

@@ -9,7 +9,11 @@ export class AttackService {
     return `This action adds a new ${attackItemType}`;
   }
 
-  findAll(attackItemType: AttackType) {
+  findAll() {
+    return `This action returns all attack items`;
+  }
+
+  findAllByType(attackItemType: AttackType) {
     return `This action returns all ${attackItemType}s`;
   }
 

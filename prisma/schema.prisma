@@ -9,3 +9,23 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model AttackItem {
+  id       Int     @id @default(autoincrement())
+  name     String  @unique
+  atk      Int
+  effect   String?
+  img      String?
+  wield    Int
+  property String
+  type     String
+}
+
+model DefenseItem {
+  id     Int     @id @default(autoincrement())
+  name   String  @unique
+  def    Int
+  effect String?
+  img    String?
+  type   String
+}

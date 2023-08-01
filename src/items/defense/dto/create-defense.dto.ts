@@ -16,7 +16,4 @@ export class CreateDefenseDto {
   @IsString()
   @IsOptional()
   effect?: string
-
-  @IsEnum(DefenseType)
-  type: DefenseType
 }

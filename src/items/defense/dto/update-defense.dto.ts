@@ -20,8 +20,4 @@ export class UpdateDefenseDto extends PartialType(CreateDefenseDto) {
   @IsString()
   @IsOptional()
   effect?: string
-
-  @IsEnum(DefenseType)
-  @IsOptional()
-  type?: DefenseType
 }
